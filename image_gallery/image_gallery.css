@@ -1,0 +1,41 @@
+.gallery {
+	width:1%;
+	font-weight:bold;
+}
+.gallery a {
+	text-decoration:none;
+}
+.gallery a:focus {
+	outline:0;
+}
+.gallery img {
+	border:1px solid #0080ff;
+	cursor:pointer;
+}
+.sm {
+	width:200px;
+}
+.lg {
+	width:480px;
+}
+.tall {
+	height:360px;
+}
+.short {
+	height:150px;
+}
+.load {
+	background-color:#111;
+	color:#0080ff;
+	display:none;
+	font-weight:bold;
+	margin:1px;
+	padding:.5em 0;
+	position:absolute;
+	text-align:center;
+}
+.td-seek {
+	text-align:center;
+	padding-left:.5em;
+}
+

@@ -1,0 +1,327 @@
+/* =============================================================================
+GENERAL LAYOUT
+============================================================================= */
+
+/* BODY */
+body {
+	background:url('/ui/bg_swirls_sm.jpg') #000 no-repeat center top;
+	color:#998;
+	font-family:Verdana;
+	font-size:13.8px;
+	margin:0em;
+}
+
+/* HEXAGON BACKGROUND */
+.bg-hex {
+	background:url('/ui/hex.png') repeat center top;
+	padding-top:.5em;
+}
+
+/* TITLE */
+.main-title {
+	background:url('/ui/title.png') no-repeat center center;
+	display:block;
+	height:110px;
+	margin-top:.5em;	
+	margin-bottom:-1em;
+}
+
+/* TABLE GRID */
+/* forced to use table for layout instead of 'display:table-cell' to support Firefox 3 (render bug) and IE less than 8 (not supported) */
+.table-grid {
+	border-spacing:0px;
+	width:100%;
+}
+.td-grid {
+	vertical-align:top;
+	padding:0px;
+}
+.td-grid:first-child {
+	width:1%;
+}
+
+/* BOX */
+/* use this class with divs in the future instead of 'table-grid'... hopefully */
+.box {
+	display:table-cell;
+	vertical-align:top;
+}
+
+/* GREEDY BOX */
+.greedy-box {
+	display:table;
+	width:100%;
+}
+.greedy-box .left {
+	display:table-cell;
+	text-align:left;
+}
+.greedy-box .center {
+	display:table-cell;
+	text-align:center;
+}
+.greedy-box .right {
+	display:table-cell;
+	text-align:right;
+}
+
+/* CONTENT BLOCKS */
+.cb {
+}
+
+.cb h1 {
+	color:#ff8000;
+	font-size:24px;
+}
+.cb h2 {
+	color:#bba;
+	font-size:18px;
+}
+.cb h3 {
+	color:#bba;
+	font-size:13.8px;
+}
+.cb p {
+	font-size:13.8px;
+	line-height:1.2em;
+}
+.cb a {
+	color:#0080ff;
+}
+.cb a:hover {
+	color:#fff;
+}
+
+.cb .bdr-tl {
+	display:block;
+	height:30px;
+	padding-left:30px;
+}
+.cb .bdr-t {
+	display:block;
+	height:30px;
+	width:100%;
+}
+.cb .bdr-tr {
+	display:block;
+	height:30px;
+	padding-right:30px;
+}
+.cb .bdr-l {
+	padding-left:30px;
+}
+.cb .bdr-r {
+	padding-right:30px;
+}
+.cb .bdr-bl {
+	display:block;
+	height:30px;
+	padding-left:30px;
+}
+.cb .bdr-b {
+	display:block;
+	height:30px;
+	width:100%;
+}
+.cb .bdr-br {
+	display:block;
+	height:30px;
+	padding-right:30px;
+}
+.cb .content {
+	padding:.1em 1.5em .1em 1.5em;
+}
+
+.cb-black-blue .bdr-tl {
+	background:url('/ui/black-main.png') no-repeat left 0px;
+}
+.cb-black-blue .bdr-t {
+	background:url('/ui/black-main.png') repeat-x center -120px;
+}
+.cb-black-blue .bdr-tr {
+	background:url('/ui/black-main.png') no-repeat right -30px;
+}
+.cb-black-blue .bdr-l {
+	background:url('/ui/black-left_blue.png') repeat-y left top;
+}
+.cb-black-blue .bdr-r {
+	background:url('/ui/black-right_blue.png') repeat-y right top;
+}
+.cb-black-blue .bdr-bl {
+	background:url('/ui/black-main.png') no-repeat left -90px;
+}
+.cb-black-blue .bdr-b {
+	background:url('/ui/black-main.png') repeat-x center -150px;
+}
+.cb-black-blue .bdr-br {
+	background:url('/ui/black-main.png') no-repeat right -60px;
+}
+.cb-black-blue .content {
+	background:url('/ui/black_body.png') repeat left top;
+}
+
+.cb-black-green .bdr-tl {
+	background:url('/ui/black-green.png') no-repeat left 0px;
+}
+.cb-black-green .bdr-t {
+	background:url('/ui/black-green.png') repeat-x center -120px;
+}
+.cb-black-green .bdr-tr {
+	background:url('/ui/black-green.png') no-repeat right -30px;
+}
+.cb-black-green .bdr-l {
+	background:url('/ui/black-left_green.png') repeat-y left top;
+}
+.cb-black-green .bdr-r {
+	background:url('/ui/black-right_green.png') repeat-y right top;
+}
+.cb-black-green .bdr-bl {
+	background:url('/ui/black-green.png') no-repeat left -90px;
+}
+.cb-black-green .bdr-b {
+	background:url('/ui/black-green.png') repeat-x center -150px;
+}
+.cb-black-green .bdr-br {
+	background:url('/ui/black-green.png') no-repeat right -60px;
+}
+.cb-black-green .content {
+	background:url('/ui/black_body.png') repeat left top;
+}
+
+.cb-black-white .bdr-tl {
+	background:url('/ui/black-main.png') no-repeat left -180px;
+}
+.cb-black-white .bdr-t {
+	background:url('/ui/black-main.png') repeat-x center -300px;
+}
+.cb-black-white .bdr-tr {
+	background:url('/ui/black-main.png') no-repeat right -210px;
+}
+.cb-black-white .bdr-l {
+	background:url('/ui/black-left_white.png') repeat-y left top;
+}
+.cb-black-white .bdr-r {
+	background:url('/ui/black-right_white.png') repeat-y right top;
+}
+.cb-black-white .bdr-bl {
+	background:url('/ui/black-main.png') no-repeat left -270px;
+}
+.cb-black-white .bdr-b {
+	background:url('/ui/black-main.png') repeat-x center -330px;
+}
+.cb-black-white .bdr-br {
+	background:url('/ui/black-main.png') no-repeat right -240px;
+}
+.cb-black-white .content {
+	background:url('/ui/black_body.png') repeat left top;
+}
+
+/* MENU */
+.menu a {
+	color:#0080ff;
+	display:block;
+	font-size:13.8px;
+	font-weight:bold;
+	padding-left:1em;
+	text-decoration:none;
+	white-space:nowrap;
+}
+.menu a:hover {
+	color:#fff;
+}
+
+/* FOOTER */
+.link-bar {
+	font-size:11.5px;
+	font-weight:bold;
+	text-align:center;
+}
+.link-bar a {
+	text-decoration:none;
+}
+.link-bar .center {
+	padding:0em 2em;
+	white-space:nowrap;
+}
+
+/* =============================================================================
+CONTENT FORMATTING
+============================================================================= */
+
+/* ERROR */
+.error {
+	color:#f00;
+}
+
+/* FLOAT */
+.left {
+	float:left;
+	padding-right:2em;
+}
+.right {
+	float:right;
+	padding-left:2em;
+}
+
+/* HIDE */
+.hide {
+	display:none;
+}
+
+/* HR */
+.hr-blue {
+	border-top:1px dashed #0080ff;
+	margin:2em 0;
+}
+
+/* ICONS */
+.ico-48 {
+	display:inline-block;
+	height:48px;
+	margin:4px;
+	width:48px;
+}
+
+/* IMG BOX */
+.img-box {
+	display:inline-block;
+	font-style:italic;
+	text-align:center;
+}
+
+/* LINK IMAGES */
+a.plain img {
+	border:none;
+}
+
+/* LEADIN */
+.leadin {
+	font-weight:bold;
+	font-style:italic;
+}
+
+/* SUBHEADING */
+.subhead {
+	color:#998;
+	display:block;
+	font-size:12.075px;
+	font-weight:normal;
+}
+
+/* =============================================================================
+CONTENT STYLING
+============================================================================= */
+
+/* FORMS */
+.input-text {
+	background-color:#ffe;
+	border:1px solid #0080ff;
+	color:#444;
+	font-family:Verdana;
+	font-size:13.8px;
+	padding:4px;
+}
+.input-text:focus {
+	border:1px solid #ff8000;
+}
+

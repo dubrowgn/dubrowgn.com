@@ -1,0 +1,34 @@
+/* BROWSER / OS ICONS */
+.ico-88x31 {
+	display:inline-block;
+	height:31px;
+	margin:4px;
+	width:88px;
+}
+.chrome {
+	background:url('/about/images/browser_os_48.png') no-repeat 0px top;
+}
+.firefox {
+	background:url('/about/images/browser_os_48.png') no-repeat -48px top;
+}
+.ie {
+	background:url('/about/images/browser_os_48.png') no-repeat -96px top;
+}
+.konqueror {
+	background:url('/about/images/browser_os_48.png') no-repeat -144px top;
+}
+.opera {
+	background:url('/about/images/browser_os_48.png') no-repeat -192px top;
+}
+.safari {
+	background:url('/about/images/browser_os_48.png') no-repeat -240px top;
+}
+.linux {
+	background:url('/about/images/browser_os_48.png') no-repeat -288px top;
+}
+.windows {
+	background:url('/about/images/browser_os_48.png') no-repeat -336px top;
+}
+.check {
+	background:url('/about/images/browser_os_48.png') no-repeat -384px top;
+}
