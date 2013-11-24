@@ -174,9 +174,10 @@ class comment {
 // ________________________________________________________________________(url)
 class url {
 	public static function redirect($page) {
+		$scheme = $_SERVER['HTTPS'] === "on" ? "https" : "http";
 		$host = $_SERVER['HTTP_HOST'];
 		$dir = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-		header("Location: http://{$host}{$dir}/{$page}");
+		header("Location: {$scheme}://{$host}{$dir}/{$page}");
 		
 		//exit();
 	} // top( void )
@@ -311,12 +312,12 @@ class BasicHead {
 	private $_metas = [ '<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />' ];
 	private $_title = "";
 	
-	public function linkJs($src, $async = false) {
-		// normalize async attribute
-		$async = empty($async) ? "" : " async";
+	public function linkJs($src, $attributes = "") {
+		// normalize attributes
+		$attributes = empty($attributes) ? "" : " " . trim($attributes);
 
 		// append js tag
-		$this->_jss[] = "<script type=\"text/javascript\" src=\"$src\"$async></script>";
+		$this->_jss[] = "<script type=\"text/javascript\" src=\"$src\"$attributes></script>";
 	} // linkJs( )
 	
 	public function linkCss($href) {
@@ -324,8 +325,13 @@ class BasicHead {
 	} // linkCss( )
 
 	public function embedJs($js) {
-		throw new Exception('Not implemented!');
+		$js = trim($js, "\r\n");
+		$this->_jss[] = "<script>\n$js\n\t\t</script>";
 	} // embedJs( )
+
+	public function embedJsAsyncHandler($name, $count, $command) {
+		$this->_jss[] = "<script>var $name = (function() { var count = $count; return function() { if (--count == 0) $command; }; })();</script>";
+	} // embedJsAsyncHandler( )
 
 	public function embedJsFile($url) {
 		// normalize url
@@ -353,11 +359,11 @@ class BasicHead {
 	} // title( )
 
 	public function description($description) {
-		$this->_metas[] = "<meta name=\"description\" content=\"$description\" />";
+		$this->metadata("description", $description);
 	} // description( )
 
 	public function keywords($keywords) {
-		$this->_metas[] = "<meta name=\"keywords\" content=\"$keywords\" />";
+		$this->metadata("keywords", $keywords);
 	} // keywords( string )
 
 	public function canonicalUrl($href) {
@@ -369,7 +375,7 @@ class BasicHead {
 	} // link( )
 
 	public function metadata($name, $content) {
-		$this->_metas[] = "<meta name=\"$name\" content=\"$keywords\" />";
+		$this->_metas[] = "<meta name=\"$name\" content=\"$content\" />";
 	} // metadata( )
 
 	public function output() {

@@ -10,7 +10,7 @@ $head->embedCssFile("styles.css");
 if (isset($_GET['index'])) {
 	// generate the rest of the head tag
 	$head->title("Blog | Index of Existing Blog Posts - DuBrowgn.com");
-	$head->description("FIXME");
+	$head->description("Index of blog posts on DuBrowgn.com. Find fascinating blog posts about programming and other topics by date or by title.");
 	$head->canonicalUrl("http://www.dubrowgn.com/blog.php?index");
 	$head->keywords('dubrowgn, blog, dustin brown, programming, proof of concept, experiment, index');
 	$head->output();
@@ -30,13 +30,13 @@ if (isset($_GET['index'])) {
 	$Y = ""; // year
 
 	// FETCH / FORMAT / DUMP BLOG ENTRIES FROM DATABASE
-	$query = "SELECT id, title, DATE_FORMAT(date,\"%M %e\") AS date, DATE_FORMAT(date,\"%Y\") AS year FROM blog ORDER BY id DESC LIMIT ?,?";
+	$query = "SELECT id, title, description, DATE_FORMAT(date,\"%M %e\") AS date, DATE_FORMAT(date,\"%Y\") AS year FROM blog ORDER BY id DESC LIMIT ?,?";
 	if ($stmt = $mysqli->prepare($query)) {
 		$stmt->bind_param("ii", $get_index, $limit);
 		if (!$stmt->execute())
 			email_error(__FILE__, __LINE__, $stmt->error . "\n\nSQL Query: $query");
 
-		$stmt->bind_result($id, $title, $date, $year);
+		$stmt->bind_result($id, $title, $desc, $date, $year);
 		while ($stmt->fetch()) {
 			if ($Y != $year) {
 				if ($Y)
@@ -65,7 +65,7 @@ else {
 	// RETRIEVE TARGET BLOG DATA
 	
 	// generate SQL for getting target blog post from database
-	$query = "SELECT id, title, body, DATE_FORMAT(date,\"%M %e, %Y\") AS date FROM blog " . ($get_id > 0 ? "WHERE id = ?" : "ORDER BY id DESC LIMIT 1");
+	$query = "SELECT id, title, description, body, DATE_FORMAT(date,\"%M %e, %Y\") AS date FROM blog " . ($get_id > 0 ? "WHERE id = ?" : "ORDER BY id DESC LIMIT 1");
 	
 	// fetch target (t) blog post from database
 	if ($stmt = $mysqli->prepare($query)) {
@@ -74,7 +74,7 @@ else {
 		if (!$stmt->execute())
 			email_error(__FILE__, __LINE__, $stmt->error . "\n\nSQL Query: $query");
 
-		$stmt->bind_result($t_id, $t_title, $t_body, $t_date);
+		$stmt->bind_result($t_id, $t_title, $t_desc, $t_body, $t_date);
 		
 		if ($stmt->fetch())
 			$get_id = $t_id;
@@ -84,8 +84,8 @@ else {
 		email_error(__FILE__, __LINE__, $mysqli->error . "\n\nSQL Query: $query");
 	
 	// generate the rest of the head tag
-	$head->title("Blog | $t_title - DuBrowgn.com");
-	$head->description("FIXME");
+	$head->title("Blog | " . htmlspecialchars($t_title) . " - DuBrowgn.com");
+	$head->description(htmlspecialchars($t_desc));
 	$head->canonicalUrl("http://www.dubrowgn.com/blog.php?id=$t_id");
 	$head->keywords('dubrowgn, blog, dustin brown, FIXME');
 	$head->output();

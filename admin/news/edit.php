@@ -52,9 +52,11 @@ if (empty($id) || empty($title) || empty($body)) {
 $head = new AdminHead();
 $head->title('Edit News Post | Site Administration - DuBrowgn.com');
 $head->embedCssFile("styles.css");
-$head->linkCss("/admin/lib/codemirror/codemirror.css");
-$head->linkJs("/admin/lib/codemirror/htmlmixed-compiled-min.js");
-$head->embedCss(".CodeMirror { height: auto; width:1000px; line-height:1.25em; }");
+$head->linkCss("//{$_SERVER['HTTP_HOST']}/lib/codemirror/codemirror.css");
+$head->embedJsAsyncHandler("jsLoaded", 3, '$(function() { initPreviewEditor(document.input.title, document.input.body, document.getElementById("preview")); })');
+$head->linkJs("//{$_SERVER['HTTP_HOST']}/lib/codemirror/htmlmixed-compiled-min.js", 'async onload="jsLoaded()"');
+$head->linkJs("//{$_SERVER['HTTP_HOST']}/lib/jquery/jquery.min.js", 'async onload="jsLoaded()"');
+$head->linkJs("//{$_SERVER['HTTP_HOST']}/admin/lib/init-preview-editor.js", 'async onload="jsLoaded()"');
 $head->output();
 
 // BODY
@@ -65,34 +67,26 @@ $cb = new AdminContentBlock("blue", "ltb");
 $cb->open();
 $cb->h1("Edit News Post");
 ?>
-					<form name="input" action="edit.php?id=<?php echo htmlspecialchars($id) ?>" method="post">
-						<p class="error"><?php echo htmlspecialchars($error) ?></p>
-						<p>
-							Title:<br />
-							<input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>" maxlength="127" style="width:35%" />
-						</p>
-						<p>
-							Body:<br />
-							<textarea id="newsBody" name="body" maxlength="65535"><?php echo htmlspecialchars($body) ?></textarea>
-						</p>
-						<input type="hidden" name="id" value="<?php echo htmlspecialchars($id) ?>" />
-						<input type="submit" value="Submit" />
-					</form>
-					<script>
-						var editor = CodeMirror.fromTextArea(document.getElementById("newsBody"), {
-							lineNumbers: true,
-							mode: "text/html",
-							matchBrackets: true,
-							indentWithTabs: true,
-							indentUnit: 4
-						});
-					</script>
+							<form name="input" action="edit.php?id=<?php echo htmlspecialchars($id) ?>" method="post">
+								<p class="error"><?php echo htmlspecialchars($error) ?></p>
+								<p>
+									Title:<br />
+									<input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>" maxlength="70" style="width:330px" />
+								</p>
+								<p>
+									Body:<br />
+									<textarea name="body" maxlength="65535"><?php echo htmlspecialchars($body) ?></textarea>
+								</p>
+								<input type="hidden" name="id" value="<?php echo htmlspecialchars($id) ?>" />
+								<input type="submit" value="Submit" />
+							</form>
+							<div class="hr-blue"></div>
+							<div id="preview"></div>
+							<div class="hr-blue"></div>
+							<p>
+								<a href='./'>Cancel</a>
+							</p>
 <?php
-
-echo "{$const_tabs}<div class=\"hr-blue\"></div>";
-echo "{$const_tabs}<p>\n";
-echo "{$const_tabs}\t<a href='./'>Cancel</a>\n";
-echo "{$const_tabs}</p>\n";
 $cb->close();
 
 // FOOTER
