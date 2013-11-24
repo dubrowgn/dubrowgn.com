@@ -152,13 +152,19 @@ class auth {
 
 // _______________________________________________________________________(blog)
 class blog {
-	public static function create($mysqli, $title, $body) {
+	public static function create($mysqli, $title, $desc, $body) {
 		// validate title
 		if (empty($title))
 			return "Title cannot be empty";
-		if (strlen($title) > 127)
-			return "Title cannot be longer than 127 characters";
+		if (strlen($title) > 70)
+			return "Title cannot be longer than 70 characters";
 		
+		// validate description
+		if (empty($desc))
+			return "Description cannot be empty";
+		if (strlen($desc) > 160)
+			return "Description cannot be longer than 160 characters";
+
 		// validate body
 		if (empty($body))
 			return "Body cannot be empty";
@@ -167,9 +173,9 @@ class blog {
 		
 		// insert blog into database
 		$error = null;
-		$query = "INSERT INTO blog (title, body, date) VALUES(?, ?, CURDATE())";
+		$query = "INSERT INTO blog (title, description, body, date) VALUES(?, ?, ?, CURDATE())";
 		if ($stmt = $mysqli->prepare($query)) {
-			$stmt->bind_param("ss", htmlspecialchars($title), htmlspecialchars($body));
+			$stmt->bind_param("sss", htmlspecialchars($title), htmlspecialchars($desc), $body);
 			if (!$stmt->execute())
 				$error = $stmt->error;
 			$stmt->close();
@@ -182,7 +188,7 @@ class blog {
 		return $error;
 	} // create( )
 	
-	public static function update($mysqli, $id, $title, $body) {
+	public static function update($mysqli, $id, $title, $desc, $body) {
 		// validate id
 		if (empty($id) || !is_numeric($id))
 			return "Invalid blog ID";
@@ -190,8 +196,14 @@ class blog {
 		// validate title
 		if (empty($title))
 			return "Title cannot be empty";
-		if (strlen($title) > 127)
-			return "Title cannot be longer than 127 characters";
+		if (strlen($title) > 70)
+			return "Title cannot be longer than 70 characters";
+		
+		// validate description
+		if (empty($desc))
+			return "Description cannot be empty";
+		if (strlen($desc) > 160)
+			return "Description cannot be longer than 160 characters";
 		
 		// validate body
 		if (empty($body))
@@ -201,9 +213,9 @@ class blog {
 		
 		// update blog in database
 		$error = null;
-		$query = "UPDATE blog SET title = ?, body = ? WHERE id = ?";
+		$query = "UPDATE blog SET title = ?, description = ?, body = ? WHERE id = ?";
 		if ($stmt = $mysqli->prepare($query)) {
-			$stmt->bind_param("ssi", $title, $body, $id);
+			$stmt->bind_param("sssi", $title, $desc, $body, $id);
 			if (!$stmt->execute())
 				$error = $stmt->error;
 			$stmt->close();
@@ -223,8 +235,8 @@ class news {
 		// validate title
 		if (empty($title))
 			return "Title cannot be empty";
-		if (strlen($title) > 127)
-			return "Title cannot be longer than 127 characters";
+		if (strlen($title) > 70)
+			return "Title cannot be longer than 70 characters";
 		
 		// validate body
 		if (empty($body))
@@ -236,7 +248,7 @@ class news {
 		$error = null;
 		$query = "INSERT INTO news (title, body, date) VALUES(?, ?, CURDATE())";
 		if ($stmt = $mysqli->prepare($query)) {
-			$stmt->bind_param("ss", htmlspecialchars($title), htmlspecialchars($body));
+			$stmt->bind_param("ss", htmlspecialchars($title), $body);
 			if (!$stmt->execute())
 				$error = $stmt->error;
 			$stmt->close();
@@ -257,8 +269,8 @@ class news {
 		// validate title
 		if (empty($title))
 			return "Title cannot be empty";
-		if (strlen($title) > 127)
-			return "Title cannot be longer than 127 characters";
+		if (strlen($title) > 70)
+			return "Title cannot be longer than 70 characters";
 		
 		// validate body
 		if (empty($body))
