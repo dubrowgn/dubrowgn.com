@@ -43,6 +43,7 @@ class body_admin extends body {
 						</p>
 						<h3>Server</h3>
 						<p>
+							<a href="/admin/apcinfo.php">APC Info</a>
 							<a href="/admin/phpinfo.php">PHP Info</a>
 							<a href="/admin/variables.php">Variables</a>
 						</p>
@@ -74,7 +75,7 @@ class auth {
 			return "Password cannot be longer than 255 characters";
 		
 		// password_hash() returns false on failure
-		$hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+		$hash = password_hash($password, PASSWORD_DEFAULT);
 		if (!$hash)
 			return "Failed to hash password";
 		

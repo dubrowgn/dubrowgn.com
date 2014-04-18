@@ -4,9 +4,6 @@
 	PRE-INITIALIZATIONS
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-// start execution timer
-$php_start_time = microtime(true);
-
 // load server config options
 require("config.php");
 
@@ -129,8 +126,9 @@ class body {
 							<a href="/blog.php">Blog</a>
 							<a href="/about.php">About</a>
 						</p>
-						<h3>JavaScript</h3>
+						<h3>Web Projects</h3>
 						<p>
+							<a href="/canvas-td/">Canvas TD</a>
 							<a href="/script_engine.php">Script Engine</a>
 							<a href="/image_gallery.php">Image Gallery</a>
 						</p>
@@ -537,7 +535,7 @@ function email_error($file, $line, $_error) {
 function get_execution_ms() {
 	global $php_start_time;
 	
-	return number_format((microtime(true) - $php_start_time) * 1000, 2);
+	return number_format((microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 1000, 2);
 } // get_execution_ms( void )
 
 // ________________________________________________________________(include_php)
