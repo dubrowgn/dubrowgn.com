@@ -47,28 +47,8 @@ class _404 {
 // _______________________________________________________________________(body)
 class body {
 	public static function open($showNav = true) {
-//<script>
-	//var GoogleAnalyticsObject = 'ga';
-	//var ga = {
-		//l: 1 * new Date(),
-		//q: [ ['create', 'UA-37966821-2', 'dubrowgn.com'], ['send', 'pageview'] ]
-	//};
-	
-	//var script = document.createElement('script');
-	//script.async = 1;
-	//script.src = '//www.google-analytics.com/analytics.js';
-//</script>
 ?>
 	<body><div class="bg-hex">
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		
-		ga('create', 'UA-37966821-2', 'dubrowgn.com');
-		ga('send', 'pageview');
-	</script>
 	<div class="main-title"></div>
 <?php
 		if ($showNav) {
@@ -97,24 +77,6 @@ class body {
 	} // close( void )
 	
 	public static function echoNav() {
-		//$menu = [
-		//	"Main" => [
-		//		"Home" => "/",
-		//		"Blog" => "/blog.php",
-		//		"About" => "/about.php"
-		//	],
-		//	"JavaScript" => [
-		//		"Script Engine" => "/script_engine.php",
-		//		"Image Gallery" => "/image_gallery.php"
-		//	],
-		//	"Utilities" => [
-		//		"Renamer" => "/renamer.php"
-		//	]
-		//];
-
-		//$nav = new BasicNavigation($menu);
-		//$nav->output();
-
 ?>
 		<div class="cb cb-black-white">
 			<div class="bdr-tr"><div class="bdr-t"></div></div>
