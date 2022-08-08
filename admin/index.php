@@ -16,11 +16,11 @@ $head->output();
 body_admin::open();
 
 // CONTENT
-$cb = new AdminContentBlock("blue", "ltb");
+$cb = new AdminContentBlock("blue", "right");
 $cb->open();
 $cb->h1("Welcome");
 ?>
-						<p>Choose what you would like to manage from the list on the left.</p>
+			<p>Choose what you would like to manage from the list on the left.</p>
 <?php
 $cb->close();
 

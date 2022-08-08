@@ -16,7 +16,7 @@ $head->output();
 body_admin::open();
 
 // CONTENT
-$cb = new AdminContentBlock("blue", "ltb");
+$cb = new AdminContentBlock("blue", "right");
 $cb->open();
 $cb->h1('Op Cache Information');
 
@@ -27,30 +27,30 @@ unset($info['scripts']);
 $cb->h2('User Info');
 echo "<pre>";
 print_r($info);
-echo "</pre>";
+echo "</pre>\n";
 
 $cb->h2('Cache List');
 $pathLen = mb_strlen(dirname(__DIR__));
-echo "<p><table>";
+echo "			<p><table>\n";
 echo
-"	<thead>
-		<th>path</th>
-		<th>hits</th>
-		<th>memory</th>
-		<th>last used</th>
-	</thead>
+"				<thead>
+					<th>path</th>
+					<th>hits</th>
+					<th>memory</th>
+					<th>last used</th>
+				</thead>
 ";
 foreach ($scripts as &$item) {
 echo
-"	<tr>
-		<td>" . mb_substr($item['full_path'], $pathLen) . "</td>
-		<td>{$item['hits']}</td>
-		<td>" . number_format($item['memory_consumption'] / 1024, 2) . " KiB</td>
-		<td>{$item['last_used']}</td>
-	</tr>
+"				<tr>
+					<td>" . mb_substr($item['full_path'], $pathLen) . "</td>
+					<td>{$item['hits']}</td>
+					<td>" . number_format($item['memory_consumption'] / 1024, 2) . " KiB</td>
+					<td>{$item['last_used']}</td>
+				</tr>
 ";
 } // foreach( )
-echo "</table></p>";
+echo "			</table></p>\n";
 
 $cb->close();
 

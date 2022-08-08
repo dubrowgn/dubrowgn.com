@@ -31,23 +31,23 @@ $head->output();
 body::open(false);
 
 // CONTENT
-$cb = new AdminContentBlock("blue", "tb");
+$cb = new AdminContentBlock("blue");
 $cb->open();
 $cb->h1("Login");
 
 ?>
-						<form name="input" action="login.php" method="post">
-							<p class="error"><?php echo htmlspecialchars($error) ?></p>
-							<p>
-								Username:<br />
-								<input type="text" name="username" value="<?php echo htmlspecialchars($username) ?>" maxlength="255" />
-							</p>
-							<p>
-								Password:<br />
-								<input type="password" name="password" maxlength="255" />
-							</p>
-							<input type="submit" value="Login" />
-						</form>
+			<form name="input" action="login.php" method="post">
+				<p class="error"><?php echo htmlspecialchars($error) ?></p>
+				<p>
+					Username:<br />
+					<input type="text" name="username" value="<?php echo htmlspecialchars($username) ?>" maxlength="255" />
+				</p>
+				<p>
+					Password:<br />
+					<input type="password" name="password" maxlength="255" />
+				</p>
+				<input type="submit" value="Login" />
+			</form>
 <?php
 $cb->close();
 

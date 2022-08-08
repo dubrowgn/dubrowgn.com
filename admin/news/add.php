@@ -36,28 +36,28 @@ $head->output();
 body_admin::open();
 
 // CONTENT
-$cb = new AdminContentBlock("blue", "ltb");
+$cb = new AdminContentBlock("blue", "right");
 $cb->open();
 $cb->h1("Add News Post");
 ?>
-							<form name="input" action="add.php" method="post">
-								<p class="error"><?php echo htmlspecialchars($error) ?></p>
-								<p>
-									Title:<br />
-									<input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>" maxlength="70" style="width:330px" />
-								</p>
-								<p>
-									Body:<br />
-									<textarea name="body" maxlength="65535"><?php echo htmlspecialchars($body) ?></textarea>
-								</p>
-								<input type="submit" value="Submit" />
-							</form>
-							<div class="hr-blue"></div>
-							<div id="preview"></div>
-							<div class="hr-blue"></div>
-							<p>
-								<a href='./'>Cancel</a>
-							</p>
+			<form name="input" action="add.php" method="post">
+				<p class="error"><?php echo htmlspecialchars($error) ?></p>
+				<p>
+					Title:<br />
+					<input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>" maxlength="70" style="width:330px" />
+				</p>
+				<p>
+					Body:<br />
+					<textarea name="body" maxlength="65535"><?php echo htmlspecialchars($body) ?></textarea>
+				</p>
+				<input type="submit" value="Submit" />
+			</form>
+			<div class="hr-blue"></div>
+			<div id="preview"></div>
+			<div class="hr-blue"></div>
+			<p>
+				<a href='./'>Cancel</a>
+			</p>
 <?php
 $cb->close();
 

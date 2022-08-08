@@ -19,7 +19,7 @@ $head->output();
 body_admin::open();
 
 // CONTENT
-$cb = new AdminContentBlock("blue", "ltb");
+$cb = new AdminContentBlock("blue", "right");
 $cb->open();
 $cb->h1("Blog Posts");
 

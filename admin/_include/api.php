@@ -27,33 +27,29 @@ class admin {
 class body_admin extends body {
 	public static function echoNav() {
 ?>
-		<div class="cb cb-black-white">
-			<div class="bdr-tr"><div class="bdr-t"></div></div>
-				<div class="bdr-r">
-					<div class="content menu">
-						<h3>Content</h3>
-						<p>
-							<a href="/admin/news/">News</a>
-							<a href="/admin/blog/">Blog</a>
-						</p>
-						<h3>Management</h3>
-						<p>
-							<a href="/admin/user/">Users</a>
-							<a href="https://www.google.com/analytics/web/">Stats</a>
-						</p>
-						<h3>Server</h3>
-						<p>
-							<a href="/admin/opcacheinfo.php">Op Cache Info</a>
-							<a href="/admin/phpinfo.php">PHP Info</a>
-							<a href="/admin/variables.php">Variables</a>
-						</p>
-						<h3>Session</h3>
-						<p>
-							<a href="/admin/logout.php">Logout</a>
-						</p>
-					</div>					
-				</div>
-			<div class="bdr-br"><div class="bdr-b"></div></div>
+		<div class="cb cb-white cb-left">
+			<div class="content menu">
+				<h3>Content</h3>
+				<p>
+					<a href="/admin/news/">News</a>
+					<a href="/admin/blog/">Blog</a>
+				</p>
+				<h3>Management</h3>
+				<p>
+					<a href="/admin/user/">Users</a>
+					<a href="https://www.google.com/analytics/web/">Stats</a>
+				</p>
+				<h3>Server</h3>
+				<p>
+					<a href="/admin/opcacheinfo.php">Op Cache Info</a>
+					<a href="/admin/phpinfo.php">PHP Info</a>
+					<a href="/admin/variables.php">Variables</a>
+				</p>
+				<h3>Session</h3>
+				<p>
+					<a href="/admin/logout.php">Logout</a>
+				</p>
+			</div>
 		</div>
 <?php
 	} // echoNav( void )

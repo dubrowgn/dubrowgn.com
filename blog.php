@@ -21,7 +21,7 @@ if (isset($_GET['index'])) {
 	// start value passed in GET request?
 	$get_index = intval($_GET['index']);
 
-	$cb = new BasicContentBlock("blue", "ltb");
+	$cb = new BasicContentBlock("blue", "right");
 	$cb->open();
 	$cb->h1("Blog Index");
 
@@ -122,7 +122,7 @@ else {
 		log::err($mysqli->error . "\n\nSQL Query: $query");
 
 	// OUTPUT LINK-BAR
-	$cb = new BasicContentBlock("white", "ltrb");
+	$cb = new BasicContentBlock("white");
 	$cb->open();
 	$lb = new BasicLinkBar();
 
@@ -145,7 +145,7 @@ else {
 	$cb->close();
 
 	// OUTPUT TARGET BLOG POST
-	$cb = new BasicContentBlock("blue", "ltb");
+	$cb = new BasicContentBlock("blue", "right");
 	$cb->open();
 
 	if (isset($t_id) && $t_id > 0) {

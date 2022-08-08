@@ -27,7 +27,7 @@ if ($stmt = $mysqli->prepare($query)) {
 		log::err($stmt->error . "\n\nSQL Query: $query");
 
 	$stmt->bind_result($title, $body, $date);
-	$cb = new BasicContentBlock("blue", "ltb");
+	$cb = new BasicContentBlock("blue", "right");
 	while ($stmt->fetch()) {
 		$cb->open();
 		$cb->h1($title, $date);

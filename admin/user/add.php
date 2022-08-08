@@ -31,22 +31,22 @@ $head->output();
 body_admin::open();
 
 // CONTENT
-$cb = new AdminContentBlock("blue", "ltb");
+$cb = new AdminContentBlock("blue", "right");
 $cb->open();
 $cb->h1("Add User");
 ?>
-					<form name="input" action="add.php" method="post">
-						<p class="error"><?php echo htmlspecialchars($error) ?></p>
-						<p>
-							User Name:<br />
-							<input type="text" name="username" value="<?php echo htmlspecialchars($username) ?>" maxlength="255" />
-						</p>
-						<p>
-							Password:<br />
-							<input type="password" name="password" maxlength="255" />
-						</p>
-						<input type="submit" value="Submit" />
-					</form>
+			<form name="input" action="add.php" method="post">
+				<p class="error"><?php echo htmlspecialchars($error) ?></p>
+				<p>
+					User Name:<br />
+					<input type="text" name="username" value="<?php echo htmlspecialchars($username) ?>" maxlength="255" />
+				</p>
+				<p>
+					Password:<br />
+					<input type="password" name="password" maxlength="255" />
+				</p>
+				<input type="submit" value="Submit" />
+			</form>
 <?php
 
 echo "{$const_tabs}<div class=\"hr-blue\"></div>";

@@ -58,24 +58,24 @@ $head->output();
 body_admin::open();
 
 // CONTENT
-$cb = new AdminContentBlock("blue", "ltb");
+$cb = new AdminContentBlock("blue", "right");
 $cb->open();
 $cb->h1("Edit User");
 ?>
-					<form name="input" action="edit.php?id=<?php echo htmlspecialchars($id) ?>" method="post">
-						<p class="error"><?php echo htmlspecialchars($error) ?></p>
-						<p>
-							Username:<br />
-							<?php echo htmlspecialchars($username) ?>
-						</p>
-						<p>
-							Password:<br />
-							<input type="password" name="password" maxlength="255" />
-						</p>
-						<input type="hidden" name="id" value="<?php echo htmlspecialchars($id) ?>" />
-						<input type="hidden" name="username" value="<?php echo htmlspecialchars($username) ?>" />
-						<input type="submit" value="Submit" />
-					</form>
+			<form name="input" action="edit.php?id=<?php echo htmlspecialchars($id) ?>" method="post">
+				<p class="error"><?php echo htmlspecialchars($error) ?></p>
+				<p>
+					Username:<br />
+					<?php echo htmlspecialchars($username) ?>
+				</p>
+				<p>
+					Password:<br />
+					<input type="password" name="password" maxlength="255" />
+				</p>
+				<input type="hidden" name="id" value="<?php echo htmlspecialchars($id) ?>" />
+				<input type="hidden" name="username" value="<?php echo htmlspecialchars($username) ?>" />
+				<input type="submit" value="Submit" />
+			</form>
 <?php
 
 echo "{$const_tabs}<div class=\"hr-blue\"></div>";

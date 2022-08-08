@@ -64,33 +64,33 @@ $head->output();
 body_admin::open();
 
 // CONTENT
-$cb = new AdminContentBlock("blue", "ltb");
+$cb = new AdminContentBlock("blue", "right");
 $cb->open();
 $cb->h1("Edit Blog Post");
 ?>
-							<form name="input" action="edit.php?id=<?php echo htmlspecialchars($id) ?>" method="post">
-								<p class="error"><?php echo htmlspecialchars($error) ?></p>
-								<p>
-									<p>Title:<br />
-									<input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>" maxlength="50" style="width:330px" />
-								</p>
-								<p>
-									Description:<br />
-									<textarea name="desc" maxlength="160" style="width:330px" rows="5"><?php echo htmlspecialchars($desc) ?></textarea>
-								</p>
-								<p>
-									Body:<br />
-									<textarea name="body" maxlength="65535"><?php echo htmlspecialchars($body) ?></textarea>
-								</p>
-								<input type="hidden" name="id" value="<?php echo htmlspecialchars($id) ?>" />
-								<input type="submit" value="Submit" />
-							</form>
-							<div class="hr-blue"></div>
-							<div id="preview"></div>
-							<div class="hr-blue"></div>
-							<p>
-								<a href='./'>Cancel</a>
-							</p>
+			<form name="input" action="edit.php?id=<?php echo htmlspecialchars($id) ?>" method="post">
+				<p class="error"><?php echo htmlspecialchars($error) ?></p>
+				<p>
+					<p>Title:<br />
+					<input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>" maxlength="50" style="width:330px" />
+				</p>
+				<p>
+					Description:<br />
+					<textarea name="desc" maxlength="160" style="width:330px" rows="5"><?php echo htmlspecialchars($desc) ?></textarea>
+				</p>
+				<p>
+					Body:<br />
+					<textarea name="body" maxlength="65535"><?php echo htmlspecialchars($body) ?></textarea>
+				</p>
+				<input type="hidden" name="id" value="<?php echo htmlspecialchars($id) ?>" />
+				<input type="submit" value="Submit" />
+			</form>
+			<div class="hr-blue"></div>
+			<div id="preview"></div>
+			<div class="hr-blue"></div>
+			<p>
+				<a href='./'>Cancel</a>
+			</p>
 <?php
 $cb->close();
 
