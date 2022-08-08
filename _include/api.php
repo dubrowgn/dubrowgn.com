@@ -42,7 +42,7 @@ class _404 {
 						<p>If you believe you reached this page in error, please contact <a href="mailto:dbrown@dubrowgn.com">dbrown@dubrowgn.com</a>.</p>
 <?php
 	} // echoContent( void )
-} // staic class 'comment'
+} // staic class '_404'
 
 // _______________________________________________________________________(body)
 class body {
@@ -105,31 +105,6 @@ class body {
 <?php
 	} // echoNav( void )
 } // static class 'body'
-
-// ____________________________________________________________________(comment)
-class comment {
-	public static function echoHtml($tabs = TABS) {
-		echo "$tabs<div class=\"hr-blue\"></div>\n";
-		echo "$tabs<div id=\"disqus_thread\"></div>\n";
-		echo "$tabs<noscript>Please enable JavaScript to view the <a href=\"http://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>\n";
-		echo "$tabs<a href=\"http://disqus.com\" class=\"dsq-brlink\">comments powered by <span class=\"logo-disqus\">Disqus</span></a>\n";
-	} // echoHtml( [string] )
-	
-	public static function echoJavascript($identifier, $title, $url, $tabs = "\t") {
-		echo "$tabs<script type=\"text/javascript\">\n";
-		echo "$tabs	var disqus_shortname = 'dubrowgn';\n";
-		echo "$tabs	var disqus_identifier = '{$identifier}';\n";
-		echo "$tabs	var disqus_title = '" . str_replace("'", "\'", $title) . "';\n";
-		echo "$tabs	var disqus_url = '{$url}';\n";
-		echo "\n";
-		echo "$tabs	var dsq = document.createElement('script');\n";
-		echo "$tabs	dsq.type = 'text/javascript';\n";
-		echo "$tabs	dsq.async = true;\n";
-		echo "$tabs	dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';\n";
-		echo "$tabs	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);\n";
-		echo "$tabs</script>\n";
-	} // echoJavascript( [string] )
-} // staic class 'comment'
 
 // ________________________________________________________________________(url)
 class url {

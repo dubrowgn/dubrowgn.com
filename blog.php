@@ -154,9 +154,6 @@ else {
 		
 		// content
 		echo preg_replace("/^/m", $const_tabs, $t_body) . "\n";
-		
-		// comments
-		comment::echoHtml();
 	} // if
 	else {
 		$cb->h1("This Blog Post Does Not Exist!", "Invalid Blog ID");
@@ -167,10 +164,6 @@ else {
 
 // FOOTER
 BasicFooter::generic();
-
-// comments javascript
-if (isset($t_id) && $t_id > 0)
-	comment::echoJavascript("blog_{$t_id}", $t_title, "http://www.dubrowgn.com/blog.php?id={$t_id}");
 
 // close body
 body::close();
