@@ -43,7 +43,7 @@ class body_admin extends body {
 						</p>
 						<h3>Server</h3>
 						<p>
-							<a href="/admin/apcinfo.php">APC Info</a>
+							<a href="/admin/opcacheinfo.php">Op Cache Info</a>
 							<a href="/admin/phpinfo.php">PHP Info</a>
 							<a href="/admin/variables.php">Variables</a>
 						</p>
