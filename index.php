@@ -41,7 +41,7 @@ if ($stmt = $mysqli->prepare($query)) {
 
 // FOOTER
 // get the number of rows for table `news`
-$query = "SELECT COUNT(id) AS rows FROM news";
+$query = "SELECT COUNT(id) FROM news";
 if ($stmt = $mysqli->prepare($query)) {
 	if (!$stmt->execute())
 		email_error(__FILE__, __LINE__, $stmt->error . "\n\nSQL Query: $query");
