@@ -20,7 +20,7 @@ if (isset($_GET['index'])) {
 
 	// start value passed in GET request?
 	$get_index = intval($_GET['index']);
-	
+
 	$cb = new BasicContentBlock("blue", "ltb");
 	$cb->open();
 	$cb->h1("Blog Index");
@@ -34,7 +34,7 @@ if (isset($_GET['index'])) {
 	if ($stmt = $mysqli->prepare($query)) {
 		$stmt->bind_param("ii", $get_index, $limit);
 		if (!$stmt->execute())
-			email_error(__FILE__, __LINE__, $stmt->error . "\n\nSQL Query: $query");
+			log::err($stmt->error . "\n\nSQL Query: $query");
 
 		$stmt->bind_result($id, $title, $desc, $date, $year);
 		while ($stmt->fetch()) {
@@ -54,35 +54,35 @@ if (isset($_GET['index'])) {
 
 		$stmt->close();
 	} else
-		email_error(__FILE__, __LINE__, $mysqli->error . "\n\nSQL Query: $query");
+		log::err($mysqli->error . "\n\nSQL Query: $query");
 
 	$cb->close();
 } // if
 else {
 	// `id` passed in GET request?
 	$get_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-	
+
 	// RETRIEVE TARGET BLOG DATA
-	
+
 	// generate SQL for getting target blog post from database
 	$query = "SELECT id, title, description, body, DATE_FORMAT(date,\"%M %e, %Y\") AS date FROM blog " . ($get_id > 0 ? "WHERE id = ?" : "ORDER BY id DESC LIMIT 1");
-	
+
 	// fetch target (t) blog post from database
 	if ($stmt = $mysqli->prepare($query)) {
 		if ($get_id > 0)
 			$stmt->bind_param("i", $get_id);
 		if (!$stmt->execute())
-			email_error(__FILE__, __LINE__, $stmt->error . "\n\nSQL Query: $query");
+			log::err($stmt->error . "\n\nSQL Query: $query");
 
 		$stmt->bind_result($t_id, $t_title, $t_desc, $t_body, $t_date);
-		
+
 		if ($stmt->fetch())
 			$get_id = $t_id;
-		
+
 		$stmt->close();
 	} else
-		email_error(__FILE__, __LINE__, $mysqli->error . "\n\nSQL Query: $query");
-	
+		log::err($mysqli->error . "\n\nSQL Query: $query");
+
 	// generate the rest of the head tag
 	$head->title("Blog | " . htmlspecialchars($t_title) . " - DuBrowgn.com");
 	$head->description(htmlspecialchars($t_desc));
@@ -100,26 +100,26 @@ else {
 	if ($stmt = $mysqli->prepare($query)) {
 		$stmt->bind_param("i", $get_id);
 		if (!$stmt->execute())
-			email_error(__FILE__, __LINE__, $stmt->error . "\n\nSQL Query: $query");
+			log::err($stmt->error . "\n\nSQL Query: $query");
 
 		$stmt->bind_result($p_id, $p_title);
 		$stmt->fetch();
 		$stmt->close();
 	} else
-		email_error(__FILE__, __LINE__, $mysqli->error . "\n\nSQL Query: $query");
+		log::err($mysqli->error . "\n\nSQL Query: $query");
 
 	// get title from next post
 	$query = "SELECT id, title FROM blog WHERE id > ? ORDER BY id ASC LIMIT 1";
 	if ($stmt = $mysqli->prepare($query)) {
 		$stmt->bind_param("i", $get_id);
 		if (!$stmt->execute())
-			email_error(__FILE__, __LINE__, $stmt->error . "\n\nSQL Query: $query");
+			log::err($stmt->error . "\n\nSQL Query: $query");
 
 		$stmt->bind_result($n_id, $n_title);
 		$stmt->fetch();
 		$stmt->close();
 	} else
-		email_error(__FILE__, __LINE__, $mysqli->error . "\n\nSQL Query: $query");
+		log::err($mysqli->error . "\n\nSQL Query: $query");
 
 	// OUTPUT LINK-BAR
 	$cb = new BasicContentBlock("white", "ltrb");
@@ -147,11 +147,11 @@ else {
 	// OUTPUT TARGET BLOG POST
 	$cb = new BasicContentBlock("blue", "ltb");
 	$cb->open();
-		
+
 	if (isset($t_id) && $t_id > 0) {
 		// h1
 		$cb->h1($t_title, $t_date);
-		
+
 		// content
 		echo preg_replace("/^/m", $const_tabs, $t_body) . "\n";
 	} // if

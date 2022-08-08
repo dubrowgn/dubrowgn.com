@@ -24,7 +24,7 @@ $query = "SELECT title, body, DATE_FORMAT(date,\"%M %e, %Y\") AS date FROM news 
 if ($stmt = $mysqli->prepare($query)) {
 	$stmt->bind_param("ii", $start, $const_limit);
 	if (!$stmt->execute())
-		email_error(__FILE__, __LINE__, $stmt->error . "\n\nSQL Query: $query");
+		log::err($stmt->error . "\n\nSQL Query: $query");
 
 	$stmt->bind_result($title, $body, $date);
 	$cb = new BasicContentBlock("blue", "ltb");
@@ -37,14 +37,14 @@ if ($stmt = $mysqli->prepare($query)) {
 
 	$stmt->close();
 } else
-	email_error(__FILE__, __LINE__, $mysqli->error . "\n\nSQL Query: $query");
+	log::err($mysqli->error . "\n\nSQL Query: $query");
 
 // FOOTER
 // get the number of rows for table `news`
 $query = "SELECT COUNT(id) FROM news";
 if ($stmt = $mysqli->prepare($query)) {
 	if (!$stmt->execute())
-		email_error(__FILE__, __LINE__, $stmt->error . "\n\nSQL Query: $query");
+		log::err($stmt->error . "\n\nSQL Query: $query");
 
 	$stmt->bind_result($rows);
 	if (!$stmt->fetch())
@@ -52,7 +52,7 @@ if ($stmt = $mysqli->prepare($query)) {
 
 	$stmt->close();
 } else
-	email_error(__FILE__, __LINE__, $mysqli->error . "\n\nSQL Query: $query");
+	log::err($mysqli->error . "\n\nSQL Query: $query");
 
 $footer = new BasicFooter();
 // PREVIOUS

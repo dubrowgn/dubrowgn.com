@@ -27,7 +27,7 @@ $cb->h1("Users");
 $query = "SELECT id, username, hash FROM user ORDER BY id ASC";
 if ($stmt = $mysqli->prepare($query)) {
 	if (!$stmt->execute())
-		email_error(__FILE__, __LINE__, $stmt->error . "\n\nSQL Query: $query");
+		log::err($stmt->error . "\n\nSQL Query: $query");
 
 	echo "{$const_tabs}<table style='min-width:30%'>\n";
 	echo "{$const_tabs}\t<tr style='text-decoration:underline'><td /><td>User ID</td><td>Username</td></tr>\n";
@@ -41,7 +41,7 @@ if ($stmt = $mysqli->prepare($query)) {
 
 	$stmt->close();
 } else
-	email_error(__FILE__, __LINE__, $mysqli->error . "\n\nSQL Query: $query");
+	log::err($mysqli->error . "\n\nSQL Query: $query");
 
 echo "{$const_tabs}<div class=\"hr-blue\"></div>";
 echo "{$const_tabs}<p>\n";

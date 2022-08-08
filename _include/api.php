@@ -118,6 +118,18 @@ class url {
 	} // top( void )
 } // static class 'linkBar'
 
+// ________________________________________________________________________(log)
+class log {
+	public static function err($msg) {
+		$trace = debug_backtrace();
+		if (!empty($trace[0]) && is_array($trace[0])) {
+			$msg = "E [" . $trace[0]['file'] . ":" . $trace[0]['line'] . "] " . $msg;
+		}
+
+		error_log($msg);
+	} // err( string )
+}
+
 
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	CLASSES
@@ -433,40 +445,12 @@ function db_connect() {
 
 	// CHECK FOR CONNECTION FAILURE
 	if ($mysqli->connect_error) {
-		$error = 'Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
-	 	email_error(__FILE__, __LINE__ - 1, $error);
-	 	die("<p>There was an error while connecting to the database, and the site admin has been notified. Please try again later.</p>");
+		log::err("Connect Error (eno " . $mysqli->connect_errno . ") " . $mysqli->connect_error);
+		die("<p>There was an error while connecting to the database, and the site admin has been notified. Please try again later.</p>");
 	} // if
 
 	return $mysqli;
 } // db_connect( void )
-
-// ________________________________________________________________(email_error)
-function email_error($file, $line, $_error) {
-	// print error message if in development mode
-	if (\config\isDev)
-		echo "<p>ERROR (debug): File - $file (line $line)</p><p>Error Message: $_error</p>";
-
-	// send email if webmaster email is configured
-	if (\config\webmaster_email !== null) {
-		// create email headers
-		$headers = "MIME-Version: 1.0\n" ;
-		$headers .= "Content-type: text/plain; charset=UTF-8\n";
-		$headers .= "From: Error Dispatcher <noreply@dubrowgn.com>\n";
-		$headers .= "X-Priority: 1 (Highest)\n";
-		$headers .= "X-MSMail-Priority: High\n";
-		$headers .= "Importance: High\n"; 
-
-		// email the error details to the site admin (dbrown@dubrowgn.com)
-		if (mail(\config\webmaster_email,
-			"An error has occurred on DuBrowgn.com",
-			"The following error has occurred on DuBrowgn.com:\n\nFile -\n$file (line $line)\n\nError -\n$_error",
-			$headers))
-			return true;
-	} // if
-
-	return false;
-} // email_error( )
 
 // ___________________________________________________________(get_execution_ms)
 function get_execution_ms() {
@@ -480,7 +464,7 @@ function include_php($_url) {
 	$url = rtrim($_SERVER['DOCUMENT_ROOT'], "/") . "/" . ltrim($_url, "/");
 
 	if (!include($url))
-		email_error(__FILE__, __LINE__, "Failed to open '$url' for inclusion.");
+		log::err("Failed to open '$url' for inclusion.");
 } // include_php( string )
 
 
