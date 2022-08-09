@@ -219,7 +219,7 @@ class BasicHead {
 	private $_css = "";
 	private $_js = "";
 	private $_jss = [];
-	private $_links = [ '<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />' ];
+	private $_links = [ '<link rel="shortcut icon" type="image/png" href="/ui/icon-32.png" />' ];
 	private $_metas = [ '<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />' ];
 	private $_title = "";
 	
