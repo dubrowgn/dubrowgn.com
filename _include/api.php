@@ -49,7 +49,7 @@ class body {
 	public static function open($showNav = true) {
 ?>
 	<body><div class="bg-hex">
-	<div class="main-title"></div>
+	<div class="main-title">DuBrowgn.com</div>
 <?php
 		if ($showNav) {
 ?>
